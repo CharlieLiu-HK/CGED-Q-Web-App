@@ -1,0 +1,25 @@
+---
+title: "Chi-Test Report"
+output: pdf_document
+params:
+  Data: NA
+---
+Summary
+```{r echo=FALSE}
+params$Data
+```
+The observed counts for the Chi-Square Test
+```{r echo=FALSE}
+params$Data$observed
+```
+The expected counts for the Chi-Square Test
+```{r echo=FALSE}
+round(params$Data$expected, 3)
+```
+The residuals for the Chi-Square Test
+```{r echo=FALSE}
+round(params$Data$residuals, 3)
+```
+```{r echo=FALSE, fig.height=8, fig.width=8}
+corrplot(params$Data$residuals, is.cor = FALSE)
+```

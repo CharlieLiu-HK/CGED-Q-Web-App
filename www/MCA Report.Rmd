@@ -1,0 +1,63 @@
+---
+title: "MCA Report"
+output: pdf_document
+params:
+  Data : NA
+---
+
+```{r fig.height=10, fig.width=10, message=FALSE, warning=FALSE, echo=FALSE}
+      res.mca <- MCA(params$Data, graph = FALSE)
+      fviz_mca_var(res.mca,
+                   repel = T,
+                   col.var = "cos2",
+                   gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+                   ggtheme = theme_solarized()) +
+        guides(color = guide_colorbar(barheight = 15)) +
+        theme(plot.title = element_text(color = "steelblue", size = 18),
+              legend.text = element_text(size = 10),
+              legend.title = element_text(size = 10),
+              axis.title = element_text(size = 14),
+              axis.text = element_text(size = 10),
+              plot.background = element_rect(fill = "lightgrey"))
+```
+
+```{r echo=FALSE}
+      fviz_screeplot(res.mca, addlabels = TRUE, ylim = c(0, 20), ggtheme = theme_solarized()) +
+        geom_hline(yintercept=10, linetype=2, color="red") +
+        theme(plot.title = element_text(color = "steelblue", size = 22),
+              legend.text = element_text(size = 16),
+              legend.title = element_text(size = 16),
+              axis.title = element_text(size = 20),
+              axis.text = element_text(size = 16),
+              plot.background = element_rect(fill = "lightgrey"))
+```
+```{r echo=FALSE}
+      var <- get_mca_var(res.mca)
+      corrplot(var$cos2, is.corr=FALSE)
+```
+```{r echo=FALSE}
+      fviz_contrib(res.mca,
+                   choice = "var",
+                   axes = 1,
+                   top = 10,
+                   ggtheme = theme_solarized()) +
+        theme(plot.title = element_text(color = "steelblue", size = 22),
+              legend.text = element_text(size = 16),
+              legend.title = element_text(size = 16),
+              axis.title = element_text(size = 20),
+              axis.text = element_text(size = 16),
+              plot.background = element_rect(fill = "lightgrey"))
+```
+```{r echo=FALSE}
+      fviz_contrib(res.mca,
+                   choice = "var",
+                   axes = 2,
+                   top = 10,
+                   ggtheme = theme_solarized()) +
+        theme(plot.title = element_text(color = "steelblue", size = 22),
+              legend.text = element_text(size = 16),
+              legend.title = element_text(size = 16),
+              axis.title = element_text(size = 20),
+              axis.text = element_text(size = 16),
+              plot.background = element_rect(fill = "lightgrey"))
+```
