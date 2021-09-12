@@ -1,4 +1,4 @@
-This is the source code for the CGED-Q data analytics portal (cgedq.jundeliu.com), which is a web app built on the shiny framework in R.
+This is the source code for the CGED-Q data analytics portal (http://cgedq.jundeliu.com), which is a web app built on the shiny framework in R.
 Due to the constraints of file size allowed by gihub, the data used in the web app cannot be included here.
 However, you can download the original CGED-Q dataset by following the links in the web app.
 
